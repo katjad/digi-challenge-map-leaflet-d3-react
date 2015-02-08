@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Visit the Big Room!</title>
     <link rel="stylesheet" href="node_modules/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="node_modules/leaflet-control-geocoder/Control.Geocoder.css" />
     <link rel="stylesheet" href="stylesheets/app.css" />
 
     <!-- <script src="bower_components/modernizr/modernizr.js"></script> -->
-   <script src="node_modules/leaflet/dist/leaflet.js"></script>
-   <script src="node_modules/d3/d3.min.js"></script>
+
 
   </head>
   <body>
@@ -51,15 +51,34 @@
     </div>
     </div>
 
+    <script src="node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="node_modules/leaflet-control-geocoder/Control.Geocoder.js"></script>
+    <script src="node_modules/d3/d3.min.js"></script>
+
     <script>
 
-     var map = L.map('map').setView([51.516917, -2.543509], 11);
-     var mapLink =  '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-     L.tileLayer(
-    'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
-      attribution: '&copy; ' + mapLink + ' Contributors', 
-      maxZoom: 18,
-    }).addTo(map);
+
+
+     var stamenMap = L.tileLayer('http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', 
+     { attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 18
+      });
+
+     var cycleMap = L.tileLayer('http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png', 
+      { attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18
+      });
+
+     var map = L.map('map', {layers: [stamenMap] }).setView([51.454513, -2.587910], 11);
+
+
+     var baseLayers = {
+        "Stamen Toner Light": stamenMap,
+        "Open Cycle Map": cycleMap
+     };
+     L.control.layers(baseLayers).addTo(map);
+
+     L.Control.geocoder().addTo(map);
 
 
     </script>
@@ -68,7 +87,8 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script> 
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/app.js"></script> 
-
+  
     <script src="app/app.js"></script><!-- This needs to be last apparently!!! -->
+    
   </body>
 </html>

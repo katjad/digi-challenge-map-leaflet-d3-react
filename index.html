@@ -18,7 +18,6 @@
     <div class="large-12 columns">
       <h1>Visit the Big Room</h1>
       <a class="hide-for-large-up" href="#mapcontrols">To the map controls</a>
-
     </div>
         
     
@@ -28,24 +27,16 @@
         
         </div>
 
-        <div class="small-12 large-3 columns">
-        
+        <div class="small-12 large-3 columns">        
            
               <div id="mapcontrols">
               
-              <!-- This will not be shown once the React Component is attached -->
-                  <ul class="side-nav" role="navigation" title="Link List">
-                     <li role="menuitem"><a href="#">Link 1</a></li>
-                     <li role="menuitem"><a href="#">Link 2</a></li>
-                     <li role="menuitem"><a href="#">Link 3</a></li>
-                     <li role="menuitem"><a href="#">Link 4</a></li>
-                   </ul>
+              <!-- Some content can be shown here for users that have JS turned off -->
+                 
               <!-- till here -->
               </div>
 
           </div>
-
-      
 
         </div>
     </div>
@@ -59,7 +50,7 @@
 
 
 
-     var stamenMap = L.tileLayer('http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', 
+    var stamenMap = L.tileLayer('http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', 
      { attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       maxZoom: 18
       });

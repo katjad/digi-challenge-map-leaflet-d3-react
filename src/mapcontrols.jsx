@@ -14,6 +14,9 @@ var Controls = React.createClass({
     render: function(){
         return (
             <span>
+                <div id="suggest">
+                <SuggestBox />
+                </div>
                 <div id="bike">
                 <Long />
                 <City />
@@ -24,6 +27,57 @@ var Controls = React.createClass({
         
     }    
 });
+
+var SuggestBox = React.createClass({
+    getInitialState: function(){
+       return({submitted: false, result: ''})
+    },
+    handleSubmit: function(result){
+       this.setState({submitted: true, result: result})
+
+    },    
+    render: function(){
+
+       var result = this.state.result;
+       var style = {}
+       if(result !== ""){
+            style = {width: "80%",  background: "#fff", height: "50px",
+            "font-weight":"bold", margin: "10px auto", "padding-top": "15px"}
+       }
+       console.log(result);
+       return(
+        <div className="suggestbox" >
+            <div className="result" style = {style}>{result}</div>
+            <SuggestButton onButtonClick={this.handleSubmit} />
+        </div>
+        )
+    }
+})
+
+
+var SuggestButton = React.createClass({
+    clickHandler: function(){
+       var result = this.pickRandom();
+       this.props.onButtonClick({suggestion: result})
+
+    },
+    pickRandom: function(){
+        var results_array = [];
+        for (route_type in routes){
+            route_type_values = routes[route_type]
+            for(i = 0, n = route_type_values.length; i < n; i++){
+                  j = i;
+                  (function(){results_array.push(route_type_values[j])})()
+               }
+        }
+        var x = results_array.length;
+        var number = Math.floor(Math.random()*x);
+        return results_array[number][0];
+    },
+    render: function(){
+        return <button name="suggest" id="suggest" onClick={this.clickHandler} tabIndex="0">Suggest something!</button>
+    }
+})
 
 
 var Long = React.createClass({

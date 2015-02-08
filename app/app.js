@@ -26,6 +26,9 @@ var Controls = React.createClass({displayName: "Controls",
     render: function(){
         return (
             React.createElement("span", null, 
+                React.createElement("div", {id: "suggest"}, 
+                React.createElement(SuggestBox, null)
+                ), 
                 React.createElement("div", {id: "bike"}, 
                 React.createElement(Long, null), 
                 React.createElement(City, null)
@@ -36,6 +39,57 @@ var Controls = React.createClass({displayName: "Controls",
         
     }    
 });
+
+var SuggestBox = React.createClass({displayName: "SuggestBox",
+    getInitialState: function(){
+       return({submitted: false, result: ''})
+    },
+    handleSubmit: function(result){
+       this.setState({submitted: true, result: result})
+
+    },    
+    render: function(){
+
+       var result = this.state.result;
+       var style = {}
+       if(result !== ""){
+            style = {width: "80%",  background: "#fff", height: "50px",
+            "font-weight":"bold", margin: "10px auto", "padding-top": "15px"}
+       }
+       console.log(result);
+       return(
+        React.createElement("div", {className: "suggestbox"}, 
+            React.createElement("div", {className: "result", style: style}, result), 
+            React.createElement(SuggestButton, {onButtonClick: this.handleSubmit})
+        )
+        )
+    }
+})
+
+
+var SuggestButton = React.createClass({displayName: "SuggestButton",
+    clickHandler: function(){
+       var result = this.pickRandom();
+       this.props.onButtonClick({suggestion: result})
+
+    },
+    pickRandom: function(){
+        var results_array = [];
+        for (route_type in routes){
+            route_type_values = routes[route_type]
+            for(i = 0, n = route_type_values.length; i < n; i++){
+                  j = i;
+                  (function(){results_array.push(route_type_values[j])})()
+               }
+        }
+        var x = results_array.length;
+        var number = Math.floor(Math.random()*x);
+        return results_array[number][0];
+    },
+    render: function(){
+        return React.createElement("button", {name: "suggest", id: "suggest", onClick: this.clickHandler, tabIndex: "0"}, "Suggest something!")
+    }
+})
 
 
 var Long = React.createClass({displayName: "Long",
@@ -170,7 +224,7 @@ var toggleLayer = function toggleLayer(id, plotted, mode){
             if (plotted) {
             	var ride = L.geoJson(data, {
                 filter: function(feature, layer){
-                    return feature.geometry.type == "LineString"
+                    return feature.geometry.type == "LineString" 
                 },
                 color: colour,
                 opacity: 1,

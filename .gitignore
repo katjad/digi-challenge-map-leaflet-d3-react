@@ -2,3 +2,12 @@
 /.sass-cache/*
 *.DS_Store
 /stylesheets/*
+/config.rb
+/robots.txt
+/humans.txt
+/Gemfile.lock
+/.bowerrc
+/indexzurb.html
+/node_modules/*
+/READMEzurb.md
+

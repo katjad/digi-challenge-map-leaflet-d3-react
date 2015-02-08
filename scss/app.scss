@@ -2,10 +2,10 @@
 @import "foundation";
 
 // Or selectively include components
-// @import
+@import
 //   "foundation/components/accordion",
 //   "foundation/components/alert-boxes",
-//   "foundation/components/block-grid",
+"foundation/components/block-grid",
 //   "foundation/components/breadcrumbs",
 //   "foundation/components/button-groups",
 //   "foundation/components/buttons",
@@ -14,7 +14,7 @@
 //   "foundation/components/dropdown-buttons",
 //   "foundation/components/flex-video",
 //   "foundation/components/forms",
-//   "foundation/components/grid",
+   "foundation/components/grid";
 //   "foundation/components/inline-lists",
 //   "foundation/components/joyride",
 //   "foundation/components/keystrokes",
@@ -38,3 +38,80 @@
 //   "foundation/components/type",
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
+
+
+	
+@media #{$small-up} {
+    #map{
+		height: 500px
+	}
+}
+
+@media #{$medium-up} {
+    #map{
+		height: 700px
+	}
+}
+
+ 
+@media #{$large-up} {
+	#map{
+		height: 100%
+	}
+}
+
+
+
+h1{
+	font-size: 1.5em;
+	color: #2345ef;
+	font-weight: bold;
+	font-family: Ubuntu
+}
+
+h3{
+	font-size: 1.5em;
+}
+h4{
+	font-size: 1.31em;
+
+}
+
+ul, li, h3, #mapcontrols{
+	margin: 0; padding: 0
+}
+
+#bike h3,  #foot h3{
+	color: #fff;	
+	padding-left: 5px
+}
+#bike h4, #foot h4{
+	color: #333;
+	padding-bottom: 0;
+	margin-bottom: 0;
+	padding-left: 5px
+}
+
+.bike{
+	background: #34ef56;
+}
+
+.foot{
+	background: #0070fd;
+}
+
+#bike ul li, #foot ul li {
+	margin: 0;
+	border-bottom: #ccc;
+	color: #fff;
+	line-height: 1.2em
+}
+
+#bike ul li a, #foot ul li a{
+	color: #fff
+}
+
+.divider{
+	background: #fff;
+	height: 15px
+}

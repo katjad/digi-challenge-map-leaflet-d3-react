@@ -1,7 +1,6 @@
 /bower_components/*
 /.sass-cache/*
 *.DS_Store
-/stylesheets/*
 /config.rb
 /robots.txt
 /humans.txt
